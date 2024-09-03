@@ -1,10 +1,12 @@
 const express = require('express');
 const axios = require('axios');
 const app = express();
+const cors = require('cors'); // Import the cors package
 
 // Middleware to parse JSON requests
 app.use(express.json());
-
+// Enable CORS for all routes
+app.use(cors());
 // Endpoint to handle the request and call the GPT-4 API
 app.post('/chat', async (req, res) => {
     const { message } = req.body;
@@ -24,7 +26,7 @@ app.post('/chat', async (req, res) => {
             },
             {
                 headers: {
-                    'Authorization': `Bearer YOUR_OPENAI_API_KEY`,
+                    'Authorization': `Bearer API-KEY`,
                     'Content-Type': 'application/json',
                 },
             }
